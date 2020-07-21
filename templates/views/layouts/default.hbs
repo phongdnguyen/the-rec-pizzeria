@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Phong D. Nguyen">
+	<title>theREC Pizzeria |
+		{{# each navLinks}}
+		{{#ifeq ../section key}} {{label}} {{else}} {{/ifeq}}>
+		{{/each}}
+	</title>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link href="/styles/site.css" rel="stylesheet">
+
+	{{!-- This file provides the default styling for the KeystoneJS Content Editor
+			- only renders when user is logged in and admin--}}
+	{{{isAdminEditorCSS user}}}
+
+	{{!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+		//- Safely remove this block if you are not targeting IE8 --}}
+	<!--[if lt IE 9]>
+			<script src="//cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.js"></script>
+			<script src="//cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand" href="#"></a>
+			<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#theRecPizzaria"
+				aria-controls="theRecPizzaria" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="theRecPizzaria">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					{{# each navLinks}}
+					<li {{#ifeq ../section key}} class="active" {{else}}{{/ifeq}}>
+						<a href="{{ href }}" class="mr-4">{{ label }}</a>
+					</li>
+					{{/each}}
+				</ul>
+				<ul class="nav navbar-nav mt-2 float-right small">
+					{{#if user}}
+					<li class="text-right">
+						<a href="/keystone">Go to Admin</a><br>
+						<a href="/keystone/signout">Sign Out</a>
+					</li>
+					{{else}}
+					<li><a href="/keystone/signin" >Sign In</a></li>
+					{{/if}}
+				</ul>
+
+			</div>
+		</nav>
+	</header>
+	<div id="body">
+		<!--
+				Flash messages allow you to display once-off status messages to users, e.g. form
+				validation errors, success messages, etc
+			-->
+		{{#if messages}}
+		<div id="flash-messages" class="container">
+			{{#if messages.info}}
+			<div class="alert alert-info">
+				{{{flashMessages messages.info}}}
+			</div>
+			{{/if}}
+			{{#if messages.success}}
+			<div class="alert alert-success">
+				{{{flashMessages messages.success}}}
+			</div>
+			{{/if}}
+			{{#if messages.warning}}
+			<div class="alert alert-warning">
+				{{{flashMessages messages.warning}}}
+			</div>
+			{{/if}}
+			{{#if messages.error}}
+			<div class="alert alert-danger">
+				{{{flashMessages messages.error}}}
+			</div>
+			{{/if}}
+		</div>
+		{{/if}}
+		<!-- The content block should contain the body of your template's content-->
+		{{{body}}}
+	</div>
+
+	{{#ifeq section 'home'}}
+	{{!-- Intentionally empty --}}
+	{{else}}
+	<footer class="fixed-bottom p-4">
+		<div class="m-0 mb-4 text-center default-cursor">
+			&copy; 2020 theREC Pizzeria. All rights reserved | Powered by <a href="http://keystonejs.com"
+				target="_blank">KeystoneJS</a>.<br>
+			<p class="mt-1">Built by:
+				<a id="email" href="mailto:phong.nguyen@alumni.adams.edu">Phong D. Nguyen</a></p>
+		</div>
+	</footer>
+	{{/ifeq}}
+
+	{{!--
+			//- jQuery 1.11.3 is included by default, and required by both Bootstrap
+			//- and the KeystoneJS Content Editor. If you are not targeting IE8,
+			//- you can upgrade to 2.1.4 (also bundled) for better performance.
+		--}}
+	<script src="/js/jquery/jquery-3.4.1.min.js"></script>
+	{{!--
+			//- Customise which Bootstrap javascript files are served by including
+			//- them specifically here, instead of bootstrap-3.3.5.min.js
+		--}}
+	<script src="/js/bootstrap/bootstrap-4.4.1.bundle.min.js"></script>
+	{{{isAdminEditorJS user}}}
+</body>
+
+</html>

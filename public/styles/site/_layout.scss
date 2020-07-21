@@ -1,0 +1,52 @@
+body {
+	background-color: $background;
+	color: $foreground;
+	font-weight: 400;
+	font-size: larger;
+}
+
+footer {
+	margin-top: 30px;
+	border-top: 1px solid #eeeeee;
+	padding-top: 30px;
+	color: #777777;
+	font-size: smaller;
+}
+
+// .gallery-image img{
+//     display: block;
+//     max-width: 100%;
+//     height: auto;
+// }
+
+a {
+    text-decoration: none;
+    color: $foreground;
+    transition: .5s all;
+}
+
+a:hover {
+    text-decoration: none;
+	color: $accent;
+}
+
+.active {
+	font-weight: bolder;
+}
+
+.navbar-toggler {
+	background-color: $foreground;
+}
+
+.btn-primary {
+	background-color: transparent;
+	border-color: $foreground;
+	color: $foreground;
+	transition: .5s all;
+}
+
+.btn-primary:hover {
+	background-color: $foreground;
+	color: $background;
+	border-color: $foreground;
+}
