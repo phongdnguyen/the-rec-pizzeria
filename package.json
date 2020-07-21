@@ -21,7 +21,10 @@
     "eslint-plugin-react": "^5.1.1"
   },
   "scripts": {
+    "test": "cd test && mocha *.test.js --reporter=list",
+    "test:coverage": "nyc --reporter=html --reporter=text-summary mocha",
     "lint": "eslint .",
+    "lint:jshint": "jshint .",
     "start": "node keystone.js"
   }
 }
