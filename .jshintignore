@@ -1,9 +1,4 @@
 node_modules
-public\font
-public\script\knockout-latest.js
-public\script\jquery.min.js
-public\script\bootstrap.bundle.min.js
-public\script\knockout.mapping.min.js
-public\script\owl.carousel.min.js
+public/*
 coverage
 .nyc_output
