@@ -1,3 +1,5 @@
+'use strict';
+
 let keystone = require('keystone');
 let Menu = keystone.list('Item');
 
@@ -13,4 +15,4 @@ exports = module.exports = function (req, res) {
 
     // Render the view
     view.render('menu');
-}
+};
