@@ -1,3 +1,5 @@
+'use strict';
+
 var moment = require('moment');
 var _ = require('lodash');
 var hbs = require('handlebars');
@@ -95,7 +97,7 @@ module.exports = function () {
 		var suffix = _.isString(options.hash.suffix) ? options.hash.suffix : '';
 		var output = '';
 
-		function createTagList (tags) {
+		function createTagList(tags) {
 			var tagNames = _.map(tags, 'name');
 
 			if (autolink) {
@@ -238,7 +240,7 @@ module.exports = function () {
 			// create boolean flag state if currentPage
 			var isActivePage = ((page === currentPage) ? true : false);
 			// need an active class indicator
-			var liClass = ((isActivePage) ? ' class="active"' : '');
+			var liClass = ((isActivePage) ? ' active"' : '"');
 
 			// if '...' is sent from keystone then we need to override the url
 			if (page === '...') {
@@ -249,7 +251,7 @@ module.exports = function () {
 			// get the pageUrl using the integer value
 			var pageUrl = _helpers.pageUrl(page);
 			// wrapup the html
-			html += '<li' + liClass + '>' + linkTemplate({ url: pageUrl, text: pageText }) + '</li>\n';
+			html += '<li class="page-item' + liClass + '><a class="page-link" href="' + pageUrl + '">' + pageText + '</a></li>\n';
 		});
 		return html;
 	};
@@ -311,6 +313,41 @@ module.exports = function () {
 		return new hbs.SafeString(output);
 	};
 
+	_helpers.store = function (address) {
+		let output = '<address>';
+
+		output += '<p>' + address.street1 + '<br>';
+		output += address.street2 + '<br>';
+		output += address.suburb + ', ' + address.state + ' ' + address.postcode + '</p>';
+		output += '</address>';
+
+		return new hbs.SafeString(output);
+	};
+
+	_helpers.safeHtml = function (html) {
+		return new hbs.SafeString(html);
+	};
+
+	_helpers.phoneNumber = function (number) {
+		let numberString = number.toString();
+		let parts = [];
+
+		for (let i = 0; i < 3; i++) {
+			switch (i) {
+				case 0:
+					parts.push('(' + numberString.substr(0,3) + ') ');
+					break;
+				case 1:
+					parts.push(numberString.substr(2,3));
+					break;
+				case 2:
+					parts.push('-' + numberString.substr(5,4));
+					break;
+			}
+		}
+
+		return new hbs.SafeString(parts.join(''));
+	};
 
 	//  ### underscoreMethod call + format helper
 	//	Calls to the passed in underscore method of the object (Keystone Model)
