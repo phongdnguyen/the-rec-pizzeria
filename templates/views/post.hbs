@@ -2,18 +2,25 @@
 	<div class="row">
 		<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 			<article>
-				<p><a href="/blog">&larr; back to the blog</a></p>
+				<p><a href="/blog">&larr; back to the reviews</a></p>
 				<hr>
 				<header>
-					<h1>{{data.post.title}}</h1>
+					<h1 style="color: #6b482f">{{data.post.title}}</h1>
 					<h5>
 						{{{categoryList data.post.categories prefix="Posted in "}}}
-						{{#if author.name.first}}by {{author.name.first}}{{/if}}
+						{{#with data.post}}
+							{{#if author.name.first}}by {{author.name.first}}{{/if}}
+						{{/with}}
 					</h5>
 				</header>
 				<div class="post">
 					{{#if data.post.image}}<img src="{{{cloudinaryUrl data.post.image width=750 height=450 crop='fit' }}}" class="img-responsive">{{/if}}
+					<img src="/images/the-detrioter.jpg" width="750" height="450" class="img-thumbnail">
 					{{{data.post.content.extended}}}
+					<p>
+						Date: 
+						{{date data.post.createdAt format='M/DD/YYYY'}}
+					</p>
 				</div>
 			</article>
 		</div>

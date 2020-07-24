@@ -2,32 +2,34 @@
 	<h1>Blog</h1>
 </div>
 <div class="container">
+	<hr>
 	<div class="row">
-		<div class="col-sm-8 col-md-9">
-			<h4 class="text-weight-normal">Showing {{ data.posts.results.length}} post.</h4>
-			<div class="blog">
+		<div class="col">
+			<div class="list-group small mb-3">
+				<a href="/blog" class="{{#unless data.filter}}list-group-item active"{{else}} list-group-item"{{/unless}}>All Categories</a>
+				{{# each data.categories }}
+				<a href="{{categoryUrl key}}" class="{{#ifeq ../data.filter key}}list-group-item active"{{else}} list-group-item"{{/ifeq}}>{{name}}</a>
+				{{/each}}
+			</div>
+			<h4>Showing {{ data.posts.results.length}} post.</h4>
+			<div class="blog mt-4 d-flex flex-wrap">
 				{{# each data.posts.results}}
-				<div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post">
-					<h2><a href="{{postUrl slug}}">{{{title}}}</a></h2>
+				<div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post flex-row">
+					<h2 class="post-title"><a  href="{{postUrl slug}}">{{{title}}}</a></h2>
 					<p class="lead text-muted">{{{categoryList categories prefix="Posted in "}}}
-							{{#if author.name.first}}by {{author.name.first}}{{/if}}
+						{{#if author.name.first}}by {{author.name.first}}{{/if}}
 					</p>
-					{{#if image}}<img src="{{{cloudinaryUrl image width=160 height=160 crop='fit' }}}" class="img pull-right">{{/if}}
+					{{!-- {{#if image}}
+					<img src="{{{cloudinaryUrl image width=160 height=160 crop='fit' }}}" class="img pull-right">
+					{{/if}} --}}
+					<img src="/images/the-detrioter.jpg" class="img-thumbnail" width="160" height="160" >
 					<p>{{{content.brief}}}</p>
 					{{#if content.extended}}<p class="read-more"><a href="{{postUrl slug}}">Read more...</a></p>{{/if}}
 				</div>
 				{{/each}}
 			</div>
 		</div>
-		<div class="col-sm-4 col-md-3">
-			<h2>Categories</h2>
-			<div style="margin-top: 70px;" class="list-group">
-				<a href="/blog" class="active list-group-item">All Categories</a>
-				{{# each data.categories }}
-				<a href="{{categoryUrl key}}" class="false list-group-item">{{name}}</a>
-				{{/each}}
-			</div>
-		</div>
 	</div>
+	<hr>
 	{{>pagination}}
 </div>

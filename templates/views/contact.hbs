@@ -2,6 +2,7 @@
 	<h1>Contact Us</h1>
 </div>
 <div class="container">
+	<hr>
 	<div class="row">
 		<div class="col-sm-8 col-md-6">
 			{{#if enquirySubmitted}}
@@ -11,7 +12,7 @@
 				<input type="hidden" name="action" value="contact">
 				<div class="form-group {{#if validationErrors.name}}has-error{{/if}}">
 					<label>Name</label>
-					<input type="text" name="name.full"  class="form-control" value="{{formData.[name.full]}}">
+					<input type="text" name="name.full" class="form-control" value="{{formData.[name.full]}}">
 				</div>
 				<div class="form-group {{#if validationErrors.email}}has-error{{/if}}">
 					<label>Email</label>
@@ -19,7 +20,8 @@
 				</div>
 				<div class="form-group">
 					<label>Phone</label>
-					<input type="text" name="phone" placeholder="(optional)" class="form-control" value="{{formData.phone}}">
+					<input type="text" name="phone" placeholder="(optional)" class="form-control"
+						value="{{formData.phone}}">
 				</div>
 				<div class="form-group {{#if validationErrors.enquiryType}}has-error{{/if}}">
 					<label>What are you contacting us about?</label>
@@ -32,13 +34,33 @@
 				</div>
 				<div class="form-group {{#if validationErrors.message}}has-error{{/if}} ">
 					<label>Message</label>
-					<textarea name="message" placeholder="Leave us a message..." rows="4" class="form-control">{{formData.message}}</textarea>
+					<textarea name="message" placeholder="Leave us a message..." rows="4"
+						class="form-control">{{formData.message}}</textarea>
 				</div>
 				<div class="form-actions">
 					<button type="submit" class="btn btn-primary">Send</button>
 				</div>
 			</form>
 			{{/if}}
+		</div>
+		<div class="col-md-2"></div>
+		<div class="col-sm-4 col-md-4 my-auto small">
+			{{#each data.stores}}
+			{{#ifeq @index 0}}{{else}}
+			<hr>{{/ifeq}}
+			<h4>{{name}}</h4>
+			<p>{{store address}}</p>
+			<div class="row">
+				<div class="col-md-6">
+					<h5>Open</h5>
+					{{safeHtml open}}
+				</div>
+				<div class="col-md-6">
+					<h5>Carry Out</h5>
+					<a href="tel:+1{{phone}}">{{phoneNumber phone}}</a>
+				</div>
+			</div>
+			{{/each}}
 		</div>
 	</div>
 </div>

@@ -7,8 +7,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="author" content="Phong D. Nguyen">
 	<title>theREC Pizzeria |
-		{{# each navLinks}}
-		{{#ifeq ../section key}} {{label}} {{else}} {{/ifeq}}>
+		{{#each navLinks}}
+		{{#ifeq ../section key}} {{label}}{{/ifeq}}>
 		{{/each}}
 	</title>
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -29,8 +29,11 @@
 
 <body>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark">
-			<a class="navbar-brand" href="#"></a>
+		<nav {{#ifeq section 'home'}} class="navbar navbar-expand-sm navbar-dark fixed-top" {{else}}
+			class="navbar navbar-expand-lg navbar-dark mb-4" {{/ifeq}}>
+			<a class="navbar-brand" href="/">
+				<img src="/images/therec_logo_sm.png" alt="theREC Pizzeria">
+			</a>
 			<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#theRecPizzaria"
 				aria-controls="theRecPizzaria" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -38,26 +41,29 @@
 			<div class="collapse navbar-collapse" id="theRecPizzaria">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					{{# each navLinks}}
-					<li {{#ifeq ../section key}} class="active" {{else}}{{/ifeq}}>
-						<a href="{{ href }}" class="mr-4">{{ label }}</a>
+					<li {{#ifeq ../section key}} class="active nav-link" {{else}}class="nav-link"{{/ifeq}}>
+						<a href="{{ href }}" {{#ifeq label 'Home'}} style="display: none;" {{else}} class="mr-4"
+							{{/ifeq}}>{{ label }}</a>
 					</li>
 					{{/each}}
 				</ul>
-				<ul class="nav navbar-nav mt-2 float-right small">
-					{{#if user}}
+				<ul class="nav navbar-nav mt-2 float-right">
+					<a href="http://toasttab.com/theRECpizzeria" class="btn btn-primary mr-3 {{#ifeq section 'home'}}home{{/ifeq}} ">Order Online</a> <br>
+					{{!-- {{#if user}}
 					<li class="text-right">
 						<a href="/keystone">Go to Admin</a><br>
 						<a href="/keystone/signout">Sign Out</a>
 					</li>
 					{{else}}
-					<li><a href="/keystone/signin" >Sign In</a></li>
-					{{/if}}
+					<li><a href="/keystone/signin">Sign In</a></li>
+					{{/if}} --}}
 				</ul>
 
 			</div>
 		</nav>
 	</header>
-	<div id="body">
+	
+	<div id="body" {{#ifeq section 'home'}}{{else}}style="margin-bottom: 8rem; padding-bottom: 4rem;"{{/ifeq}}>
 		<!--
 				Flash messages allow you to display once-off status messages to users, e.g. form
 				validation errors, success messages, etc
@@ -93,8 +99,8 @@
 	{{#ifeq section 'home'}}
 	{{!-- Intentionally empty --}}
 	{{else}}
-	<footer class="fixed-bottom p-4">
-		<div class="m-0 mb-4 text-center default-cursor">
+	<footer class="fixed-bottom" style="height: 8rem;">
+		<div class="text-center default-cursor">
 			&copy; 2020 theREC Pizzeria. All rights reserved | Powered by <a href="http://keystonejs.com"
 				target="_blank">KeystoneJS</a>.<br>
 			<p class="mt-1">Built by:
