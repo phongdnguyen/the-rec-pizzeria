@@ -1,3 +1,5 @@
+'use strict';
+
 var keystone = require('keystone');
 var Enquiry = keystone.list('Enquiry');
 
@@ -12,6 +14,19 @@ exports = module.exports = function (req, res) {
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
 	locals.enquirySubmitted = false;
+	locals.data = {};
+
+	// Load store information
+	view.on('init', function (next) {
+		keystone.list('Store').model.find().lean(true).exec(function (err, results) {
+			if (err || !results.length) {
+				return next(err);
+			}
+
+			locals.data.stores = results;
+			next();
+		});
+	});
 
 	// On POST requests, add the Enquiry item to the database
 	view.on('post', { action: 'contact' }, function (next) {

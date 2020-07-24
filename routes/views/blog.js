@@ -1,3 +1,5 @@
+'use strict';
+
 var keystone = require('keystone');
 var async = require('async');
 
@@ -14,12 +16,13 @@ exports = module.exports = function (req, res) {
 	locals.data = {
 		posts: [],
 		categories: [],
+		filter: req.url.split('/')[2]
 	};
 
 	// Load all categories
 	view.on('init', function (next) {
 
-		keystone.list('PostCategory').model.find().sort('name').exec(function (err, results) {
+		keystone.list('PostCategory').model.find().sort('name').lean(true).exec(function (err, results) {
 
 			if (err || !results.length) {
 				return next(err);
@@ -45,7 +48,7 @@ exports = module.exports = function (req, res) {
 	view.on('init', function (next) {
 
 		if (req.params.category) {
-			keystone.list('PostCategory').model.findOne({ key: locals.filters.category }).exec(function (err, result) {
+			keystone.list('PostCategory').model.findOne({ key: locals.filters.category }).lean(true).exec(function (err, result) {
 				locals.data.category = result;
 				next(err);
 			});
@@ -59,14 +62,15 @@ exports = module.exports = function (req, res) {
 
 		var q = keystone.list('Post').paginate({
 			page: req.query.page || 1,
-			perPage: 10,
-			maxPages: 10,
+			perPage: 5,
+			maxPages: 5,
 			filters: {
 				state: 'published',
 			},
 		})
 			.sort('-publishedDate')
-			.populate('author categories');
+			.populate('author categories')
+			.lean(true);
 
 		if (locals.data.category) {
 			q.where('categories').in([locals.data.category]);
