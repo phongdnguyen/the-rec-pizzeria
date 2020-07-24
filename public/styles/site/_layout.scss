@@ -1,16 +1,148 @@
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+}
+
+.read-more a {
+	color: $accent1;
+	font-weight: bolder;
+}
+
+.img-thumbnail {
+	background-color: $accent;
+	border-radius: 0;
+	border-color: rgba(0,0,0,.1);
+}
+
+.text-muted {
+	font-weight: lighter;
+}
+
+.border-accent {
+	border: 1px solid $accent
+}
+
+.page-item.active .page-link {
+	background-color: $accent;
+	border-color: transparent;
+	color: $background;
+}
+
+.page-link, .page-item.disabled .page-link {
+	background-color: transparent;
+}
+
+.page-link, .list-group-item {
+	color: $accent1;
+	font-weight: bolder;
+}
+
+.post.flex-row {
+	// max-width: 33%;
+}
+
+.post a {
+	color: $accent1;
+	font-weight: bolder;
+}
+
+.post-title {
+	color: $accent1;
+}
+
+.flex-row {
+	padding: .5rem 0;
+}
+
+.flex-row:not(:last-child) {
+	// margin-right: 2.5rem;
+	padding-right: 2.5rem;
+	// border-right: 1px solid rgba(0,0,0,.1);
+}
+
+.list-group {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: start;
+}
+
+.list-group-item { 
+	outline: 1px solid rgba(0, 0, 0, 0.125);
+	border: 0;
+	display: flex;
+	flex-direction: row;
+	background-color: transparent ;
+}
+
+.list-group-item.active {
+	background-color: $accent;
+	border-radius: 0;
+	outline: 0;
+}
+
+.form-control {
+	background-color: transparent;
+	border-radius: 0;
+}
+
+.form-control:focus {
+	border-color: $accent;
+	box-shadow: 0 0 0 0.2rem $accent;
+}
+
+.fixed-top a {
+	color: $background;
+}
+
+.fixed-top a:hover {
+	color: $foreground;
+}
+
+.bg-detrioter {
+	background-image: url(/images/the-detrioter.jpg);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+.overlay {
+	height: 100vh;
+	background-color: $accent;
+}
+
+.slogan {
+	color: $background;
+	text-align: center;
+	padding-top: 7%;
+	font-size: 3em;
+	font-weight: 100;
+}
+
 body {
 	background-color: $background;
 	color: $foreground;
-	font-weight: 400;
+	font-weight: 100;
 	font-size: larger;
 }
 
+#body {
+	background-color: $background
+}
+
 footer {
-	margin-top: 30px;
-	border-top: 1px solid #eeeeee;
-	padding-top: 30px;
-	color: #777777;
+	color: $background;
 	font-size: smaller;
+	background-color: $foreground;
+	padding: 2rem;
+}
+
+footer a {
+	color: inherit;
+}
+
+footer.fixed-bottom {
+	z-index: -1000;
 }
 
 // .gallery-image img{
@@ -22,7 +154,8 @@ footer {
 a {
     text-decoration: none;
     color: $foreground;
-    transition: .5s all;
+	transition: .25s all;
+	font-weight: lighter;
 }
 
 a:hover {
@@ -31,7 +164,7 @@ a:hover {
 }
 
 .active {
-	font-weight: bolder;
+	font-weight: 800;
 }
 
 .navbar-toggler {
@@ -39,14 +172,20 @@ a:hover {
 }
 
 .btn-primary {
-	background-color: transparent;
-	border-color: $foreground;
-	color: $foreground;
+	background-color: $accent1;
+	border-color: $accent1;
+	color: $background;
 	transition: .5s all;
+	border-radius: 0;
 }
 
 .btn-primary:hover {
-	background-color: $foreground;
-	color: $background;
+	background-color: transparent;
+	color: $foreground;
 	border-color: $foreground;
+}
+
+.home {
+	background-color: $foreground;
+	border-color: $foreground ;
 }
