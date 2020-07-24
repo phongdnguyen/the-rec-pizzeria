@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * This file contains the common middleware used by your routes.
  *
@@ -19,9 +21,9 @@ var _ = require('lodash');
 */
 exports.initLocals = function (req, res, next) {
 	res.locals.navLinks = [
-		// { label: 'Home', key: 'home', href: '/' },
+		{ label: 'Home', key: 'home', href: '/' },
 		{ label: 'Menu', key: 'menu', href: '/menu'},
-		{ label: 'Reviews', key: 'blog', href: '/blog' },
+		{ label: 'Blog', key: 'blog', href: '/blog' },
 		{ label: 'Gallery', key: 'gallery', href: '/gallery' },
 		{ label: 'Contact', key: 'contact', href: '/contact' },
 	];

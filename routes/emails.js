@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * This file defines the email tests for your project.
  *
