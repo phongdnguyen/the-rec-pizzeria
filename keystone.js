@@ -14,12 +14,18 @@ keystone.init({
 	'name': 'the-rec-pizzeria',
 	'brand': 'theREC Pizzeria',
 
-	// 'admin path': 'admin',
 	'sass': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': '.hbs',
+	// 'admin path': 'admin',
+	// 'wysiwyg override toolbar': true,
+	'wysiwyg menubar': false,
+	'wysiwyg images': true,
+	'wysiwyg additional buttons': 'blockquote',
+	'wysiwyg additional plugins': 'wordcount, visualchars, print',
+	'wysiwyg skin': 'keystone',
 
 	'custom engine': handlebars.create({
 		layoutsDir: 'templates/views/layouts',
@@ -33,6 +39,7 @@ keystone.init({
 
 	'auto update': true,
 	'session': true,
+	// 'session store': 'mongo',
 	'auth': true,
 	'user model': 'User',
 });
@@ -56,11 +63,12 @@ keystone.set('routes', require('./routes'));
 
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
+	store: 'stores',
 	menu: ['items','item-categories', 'item-ingredients'],
 	blog: ['posts', 'post-categories'],
-	photo: 'galleries',
+	gallery: 'galleries',
 	message: 'enquiries',
-	user: 'users',
+	user: 'users'
 });
 
 // Start Keystone to connect to your database and initialise the web server
