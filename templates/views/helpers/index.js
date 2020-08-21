@@ -349,6 +349,17 @@ module.exports = function () {
 		return new hbs.SafeString(parts.join(''));
 	};
 
+	_helpers.add = function (val1, val2) {
+		return val1 + val2;
+	};
+
+	_helpers.proper = function (string) {
+		let charracters = string.toLowerCase().split('');
+		charracters[0] = charracters[0].toUpperCase();
+
+		return charracters.join('');
+	}
+
 	//  ### underscoreMethod call + format helper
 	//	Calls to the passed in underscore method of the object (Keystone Model)
 	//	and returns the result of format()
