@@ -25,18 +25,23 @@ let Item = new keystone.List('Item', {
 
 Item.add({
     name: { type: Types.Text, default: '', label: 'Item', initial: true, index: true, unique: true },
-    onMenu: { type: Types.Boolean, default: false, label: 'Show on Menu' },
     photo: { type: Types.CloudinaryImages, autoCleanup: true, whenExists: 'retry', retryAttempts: 3 },
-    description: { type: Types.Textarea, initial: false, height: 250 },
-    // testHtml: { type: Types.Html, wysiwyg: true, toolbar: false },
-    // testPhoto: { type: Types.File, storage: storage },
+    onMenu: { type: Types.Boolean, default: false, label: 'Show on Menu' },
+    order: { type: Types.Number, format: '0', note: 'Use this to control the order the items show up on the menu.' },
+    description: { type: Types.Textarea, initial: false },
     category: { type: Types.Relationship, ref: 'ItemCategory', many: false },
     ingredients: { type: Types.Relationship, ref: 'ItemIngredient', many: true },
-    price: { type: Types.TextArray, required: true, initial: true, format: '$0,0.00', adminDoc: 'Hello world' }
+    price: { type: Types.TextArray, required: true, initial: true, format: '$0,0.00' },
+    // testPhoto: { type: Types.File, storage: storage },
 });
 
-Item.defaultColumns = 'name|20%, category|12%, price|35%, onMenu|12%, updatedAt';
-Item.defaultSort = ['category', 'name'];
+Item.defaultColumns = 'name|35%, category|12%, price|20%, order|7%, onMenu|12%, updatedAt';
+Item.defaultSort = ['category', 'order'];
+
+Item.schema.pre('save', function (next) {
+    this.order = Math.floor(this.order);
+    next();
+});
 
 Item.register();
 

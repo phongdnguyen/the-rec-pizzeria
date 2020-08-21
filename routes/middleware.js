@@ -22,7 +22,38 @@ var _ = require('lodash');
 exports.initLocals = function (req, res, next) {
 	res.locals.navLinks = [
 		{ label: 'Home', key: 'home', href: '/' },
-		{ label: 'Menu', key: 'menu', href: '/menu'},
+		{ 
+			label: 'Menu', 
+			key: 'menu', 
+			href: '/menu',
+			subLinks: [
+				{
+					label: 'Pizza',
+					key: 'pizza',
+					href: '/menu/pizza'
+				},
+				{
+					label: 'Vegan Pizza',
+					key: 'vegan pizza',
+					href: '/menu/vegan-pizza'
+				},
+				{
+					label: 'Toppings',
+					key: 'toppings',
+					href: '/menu/toppings'
+				},
+				{
+					label: 'Side',
+					key: 'side',
+					href: '/menu/side'
+				},
+				{
+					label: 'Beverage',
+					key: 'beverage',
+					href: '/menu/beverage'
+				}
+			]
+		},
 		{ label: 'Blog', key: 'blog', href: '/blog' },
 		{ label: 'Gallery', key: 'gallery', href: '/gallery' },
 		{ label: 'Contact', key: 'contact', href: '/contact' },

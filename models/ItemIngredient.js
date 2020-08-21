@@ -12,10 +12,11 @@ let ItemIngredient = new keystone.List('ItemIngredient', {
 });
 
 ItemIngredient.add({
-	name: { type: String, required: true, unique: true, index: true },
-	description: { type: Types.Textarea, max: 250, height: 250 }
+	name: { type: String, required: true, unique: true, index: true, label: 'Ingredient' },
+	description: { type: Types.Textarea, max: 250 }
 });
 
 ItemIngredient.relationship({ ref: 'Item', path: 'items', refPath: 'ingredients' });
+ItemIngredient.defaultColumns = 'name|35%, description, updatedAt';
 
 ItemIngredient.register();

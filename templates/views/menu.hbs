@@ -3,10 +3,26 @@
 </div>
 <div class="container">
     <hr>
-    <!-- if items -->
-    {{#if items}}
-        {{!-- {{#each items}} --}}
-            <h2>{{items}}</h2>
-        {{!-- {{/each}} --}}
-    {{/if}}
+    <div class="row">
+        <div class="col">
+            <div class="list-group list-group-horizontal-md small">
+                {{#each data.categories }}
+                <a href="/menu/{{key}}" class={{#ifeq ../data.filter key}}"list-group-item active" {{else}}
+                    "list-group-item"{{/ifeq}}>{{name}}
+                </a>
+                {{/each}}
+            </div>
+            <div class="small all-caps text-right mt-5">
+                {{#each data.categories }}
+                {{#ifeq ../data.filter key}}
+                {{safeHtml comment}}
+                {{/ifeq}}
+                {{/each}}
+            </div>
+            {{#each data.items.results}}
+            {{>item}}
+            {{/each}}
+            
+        </div>
+    </div>
 </div>
