@@ -6,11 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="author" content="Phong D. Nguyen">
-	<title>theREC Pizzeria |
-		{{#each navLinks}}
-		{{#ifeq ../section key}} {{label}}{{/ifeq}}>
-		{{/each}}
-	</title>
+	<title>theREC Pizzeria | {{proper section}} </title>
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link href="/styles/site.css" rel="stylesheet">
 
@@ -41,14 +37,28 @@
 			<div class="collapse navbar-collapse" id="theRecPizzaria">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					{{# each navLinks}}
-					<li {{#ifeq ../section key}} class="active nav-link" {{else}}class="nav-link"{{/ifeq}}>
+					{{#if subLinks}}
+					<li {{#ifeq ../section key}} class="active nav-item dropdown" {{else}}class="nav-item dropdown"
+						{{/ifeq}}>
+						<a href="#" class="nav-link dropdown-toggle mr-4" id="{{key}}" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">{{label}}</a>
+						<div class="dropdown-menu" aria-labelledby="{{key}}">
+							{{#each subLinks}}
+							<a href="{{href}}" class="dropdown-item">{{label}}</a>
+							{{/each}}
+						</div>
+					</li>
+					{{else}}
+					<li {{#ifeq ../section key}} class="active nav-link" {{else}}class="nav-link" {{/ifeq}}>
 						<a href="{{ href }}" {{#ifeq label 'Home'}} style="display: none;" {{else}} class="mr-4"
 							{{/ifeq}}>{{ label }}</a>
 					</li>
+					{{/if}}
 					{{/each}}
 				</ul>
 				<ul class="nav navbar-nav mt-2 float-right">
-					<a href="http://toasttab.com/theRECpizzeria" class="btn btn-primary mr-3 {{#ifeq section 'home'}}home{{/ifeq}} ">Order Online</a> <br>
+					<li><a href="http://toasttab.com/theRECpizzeria"
+							class="btn btn-primary {{#ifeq section 'home'}}home{{/ifeq}} ">Order Online</a></li>
 					{{!-- {{#if user}}
 					<li class="text-right">
 						<a href="/keystone">Go to Admin</a><br>
@@ -62,8 +72,8 @@
 			</div>
 		</nav>
 	</header>
-	
-	<div id="body" {{#ifeq section 'home'}}{{else}}style="margin-bottom: 8rem; padding-bottom: 4rem;"{{/ifeq}}>
+
+	<div id="body" {{#ifeq section 'home'}}{{else}}style="margin-bottom: 8rem; padding-bottom: 4rem;" {{/ifeq}}>
 		<!--
 				Flash messages allow you to display once-off status messages to users, e.g. form
 				validation errors, success messages, etc

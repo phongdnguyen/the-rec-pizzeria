@@ -5,18 +5,18 @@
 	<hr>
 	<div class="row">
 		<div class="col">
-			<div class="list-group small mb-3">
+			<div class="list-group list-group-horizontal-lg small mb-3">
 				<a href="/blog" class="{{#unless data.filter}}list-group-item active"{{else}} list-group-item"{{/unless}}>All Categories</a>
 				{{# each data.categories }}
 				<a href="{{categoryUrl key}}" class="{{#ifeq ../data.filter key}}list-group-item active"{{else}} list-group-item"{{/ifeq}}>{{name}}</a>
 				{{/each}}
 			</div>
 			<h4>Showing {{ data.posts.results.length}} post.</h4>
-			<div class="blog mt-4 d-flex flex-wrap">
+			<div class="blog mt-4 d-flex flex-wrap align-items-end">
 				{{# each data.posts.results}}
 				<div data-ks-editable="{{#if ../user}}{{adminEditableUrl ../../user _id}}{{/if}}" class="post flex-row">
-					<h2 class="post-title"><a  href="{{postUrl slug}}">{{{title}}}</a></h2>
-					<p class="lead text-muted">{{{categoryList categories prefix="Posted in "}}}
+					<h2 class="post-title"><a href="{{postUrl slug}}">{{{title}}}</a></h2>
+					<p class="lead text-muted small">{{{categoryList categories prefix="Posted in "}}}
 						{{#if author.name.first}}by {{author.name.first}}{{/if}}
 					</p>
 					{{!-- {{#if image}}
@@ -24,7 +24,7 @@
 					{{/if}} --}}
 					<img src="/images/the-detrioter.jpg" class="img-thumbnail" width="160" height="160" >
 					<p>{{{content.brief}}}</p>
-					{{#if content.extended}}<p class="read-more"><a href="{{postUrl slug}}">Read more...</a></p>{{/if}}
+					{{#if content.extended}}<p><a class="small " href="{{postUrl slug}}">Read more...</a></p>{{/if}}
 				</div>
 				{{/each}}
 			</div>

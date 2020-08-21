@@ -1,0 +1,35 @@
+<ul class="list-unstyled menu-item">
+    <li class="mb-lg-5 mb-md-2 mb-sm-2">
+        <div class="container-fluid small-caps">
+            <div class="row">
+                <div class="col-md-3 p-0">
+                    <img src="/images/the-detrioter.jpg" class="img-thumbnail" >
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col-sm-2 col-xs-2 col-md-3 col-lg-2">
+                            <div class="circle">{{add @index 1}}</div>                      
+                        </div>
+                        <div class="col p-0">
+                            <h4 class="menu-item-title">{{name}}</h4>
+                            <ul class="list-inline mb-2">
+                                {{#each ingredients}}
+                                    <li class="list-inline-item small" title="{{description}}">{{name}}</li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-right p-0">
+                    <ul class="list-inline py-2 pt-lg-0">
+                        {{#each price}}
+                            <li class="list-inline-item">
+                                {{this}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>
