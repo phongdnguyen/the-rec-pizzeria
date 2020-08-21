@@ -20,4 +20,6 @@ Store.add({
     open: { type: Types.Html, wysiwyg: true},
 });
 
+Store.defaultColumns = 'name|20%, address, updatedAt';
+
 Store.register();
