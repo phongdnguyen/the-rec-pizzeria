@@ -2,6 +2,9 @@
   "name": "the-rec-pizzaria",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "12.x"
+  },
   "dependencies": {
     "keystone": "4.2.1",
     "lodash": "4.13.1",
@@ -9,7 +12,7 @@
     "cloudinary": "1.7.0",
     "express-handlebars": "3.0.0",
     "handlebars": "4.0.6",
-    "node-sass": "4.5.0",
+    "node-sass": "4.12.0",
     "node-sass-middleware": "0.11.0",
     "dotenv": "4.0.0",
     "keystone-email": "1.0.5",
