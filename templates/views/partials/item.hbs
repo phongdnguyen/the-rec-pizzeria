@@ -3,7 +3,13 @@
         <div class="container-fluid small-caps">
             <div class="row">
                 <div class="col-md-3 p-0">
+                    {{#if photo}}
+                    {{#each photo}}
+                    <img src="{{ url }}" class="img-thumbnail" >
+                    {{/each}}
+                    {{else}}
                     <img src="/images/the-detrioter.jpg" class="img-thumbnail" >
+                    {{/if}}
                 </div>
                 <div class="col">
                     <div class="row">
