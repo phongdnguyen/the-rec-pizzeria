@@ -6,7 +6,7 @@
 # Table of Content
 
 - [Demo](#demo)
-- [Background](#background)
+- [About](#about)
 - [User Story](#user-story)
 - [Technology](#technology)
 - [Nice to Have](#nice-to-have)
@@ -15,7 +15,7 @@
 # Demo
 Live website: http://therecpizzeria.herokuapp.com
 
-# Background
+# About
 
 This project was unofficially created for a local pizza restaurant. The company originally had a simple static webpage that provided a link to their online POS system. Their online business is handled by this platform, [ToastTab](http://toasttab.com). This POS system ties into their brick and mortar stores. 
 
